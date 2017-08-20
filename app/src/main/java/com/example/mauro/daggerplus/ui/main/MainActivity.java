@@ -9,6 +9,10 @@ import com.example.mauro.daggerplus.R;
 import com.example.mauro.daggerplus.data.entities.Result;
 import com.example.mauro.daggerplus.data.entities.ResultApi;
 import com.example.mauro.daggerplus.data.remote.MovieService;
+import com.example.mauro.daggerplus.di.DaggerMainComponent;
+import com.example.mauro.daggerplus.di.MainModule;
+
+import javax.inject.Inject;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -20,30 +24,32 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivityTAG_";
 
+    @Inject
+    MovieService movieService;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        injectDependencies();
+    }
 
-
+    private void injectDependencies() {
+        DaggerMainComponent.builder()
+                .mainModule(new MainModule())
+                .build().inject(this);
     }
 
     public void doMagic(View view) {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(MovieService.BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
 
-        MovieService movieService = retrofit.create(MovieService.class);
         movieService.getMovies(MovieService.API_KEY).enqueue(new Callback<ResultApi>() {
             @Override
             public void onResponse(Call<ResultApi> call, Response<ResultApi> response) {
                 ResultApi resultApi = response.body();
-                for (Result result: resultApi.getResults()){
-                    Log.d(TAG, "onResponse: " +  result.getTitle());
+                for (Result result : resultApi.getResults()) {
+                    Log.d(TAG, "onResponse: " + result.getTitle());
                 }
-
             }
 
             @Override
