@@ -1,4 +1,4 @@
-package com.example.mauro.daggerplus.ui.main;
+package com.example.mauro.daggerplus.ui.detail;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -6,6 +6,7 @@ import android.util.Log;
 import android.widget.ImageView;
 
 import com.example.mauro.daggerplus.R;
+import com.example.mauro.daggerplus.ui.main.MainActivity;
 import com.squareup.picasso.Picasso;
 
 public class DetailActivity extends AppCompatActivity {

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.mauro.daggerplus.ui.main.DetailActivity">
+    tools:context="com.example.mauro.daggerplus.ui.detail.DetailActivity">
 
     <ImageView
         android:id="@+id/a_detail_image"

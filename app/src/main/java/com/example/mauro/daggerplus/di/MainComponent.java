@@ -8,7 +8,7 @@ import dagger.Component;
  * Created by mauro on 8/20/17.
  */
 
-@Component(modules = MainModule.class)
+@Component(modules = {MainModule.class, RepositoryModul.class})
 public interface MainComponent {
     //    component per view
     void inject(MainActivity mainActivity);
