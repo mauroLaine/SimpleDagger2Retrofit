@@ -18,4 +18,9 @@
         android:onClick="doMagic"
         android:text="Download Data" />
 
+    <ListView
+        android:id="@+id/a_main_listview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></ListView>
+
 </LinearLayout>
