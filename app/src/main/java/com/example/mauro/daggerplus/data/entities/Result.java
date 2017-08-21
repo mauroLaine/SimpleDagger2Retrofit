@@ -2,6 +2,7 @@
 package com.example.mauro.daggerplus.data.entities;
 
 import java.util.List;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -162,4 +163,10 @@ public class Result {
         this.releaseDate = releaseDate;
     }
 
+    @Override
+    public String toString() {
+        return "Result{" +
+                "title='" + title + '\'' +
+                '}';
+    }
 }
