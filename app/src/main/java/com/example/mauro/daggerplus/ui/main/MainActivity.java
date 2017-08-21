@@ -1,11 +1,14 @@
 package com.example.mauro.daggerplus.ui.main;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.mauro.daggerplus.R;
 import com.example.mauro.daggerplus.data.entities.Result;
@@ -28,6 +31,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivityTAG_";
+    public static final String MOVIE_TITLE = "MOVIE_TITLE";
+    public static final String MOVIE_URL = "IMAGE_MOVIE";
 
     private ListView listView;
     private ArrayAdapter<Result> arrayAdapter;
@@ -43,6 +48,17 @@ public class MainActivity extends AppCompatActivity {
 
         setUpListView();
         injectDependencies();
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//                Toast.makeText(MainActivity.this, results.get(i).getTitle(), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(view.getContext(), DetailActivity.class);
+                intent.putExtra(MOVIE_TITLE, results.get(i).getTitle());
+                intent.putExtra(MOVIE_URL, results.get(i).getPosterPath());
+                startActivity(intent);
+            }
+        });
 
     }
 
