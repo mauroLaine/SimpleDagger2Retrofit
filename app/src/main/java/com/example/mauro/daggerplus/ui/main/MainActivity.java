@@ -41,14 +41,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        setUpListView();
+        injectDependencies();
+
+    }
+
+    private void setUpListView() {
         results = new ArrayList<>();
         listView = (ListView) findViewById(R.id.a_main_listview);
         arrayAdapter = new ArrayAdapter<Result>(this, android.R.layout.simple_list_item_1, results);
 
         listView.setAdapter(arrayAdapter);
-
-        injectDependencies();
-
     }
 
     private void injectDependencies() {
